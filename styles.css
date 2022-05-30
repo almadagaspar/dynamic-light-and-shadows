@@ -6,18 +6,17 @@
 
 body {
     background-color: #888;
-    cursor: none;
-    min-height: 100vh;
+    /* cursor: none; */
+    /* min-height: 100vh; */
 }
 
 
 #container {   
     width: 70%;   
     margin: 0px auto;  
-    min-height: 100vh;
     position: relative;
     background-color: #aaa;
-
+    min-height: 100vh;
 }
 
 
@@ -36,9 +35,17 @@ nav {
 
 .character-row {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items:flex-end;
-    margin-top: 30px;
+}
+
+
+.character-row img {
+    /* width: 260px; */
+    margin: 20px 40px 40px;
+    filter: drop-shadow(-10px 10px 2px rgba(49, 14, 14, 0.28));
+    z-index: auto;   /* ¿ Debe ser 1 o auto?  */
 }
 
 
@@ -53,15 +60,6 @@ footer {
     text-align: center;
     color: #fff;
     font-size: 15px;
-}
-
-
-
-.character-row img {
-    width: 260px;
-    margin: 20px 50px 0px;
-    filter: drop-shadow(-10px 10px 2px rgba(49, 14, 14, 0.28));
-    z-index: auto;   /* ¿ Debe ser 1 o auto?  */
 }
 
 
