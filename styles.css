@@ -7,7 +7,6 @@
 body {
     background-color: #888;
     cursor: none;
-    /* min-height: 100vh; */
 }
 
 
@@ -16,14 +15,12 @@ body {
     margin: 0px auto;  
     position: relative;
     background-color: #aaa;
-    /* min-height: 100vh; */
 }
 
 
 header {
     background: #55b;
     height: 100px;
-    z-index: 1;  
 }
 
 
@@ -44,7 +41,7 @@ section {
 img {
     margin: 20px 50px 40px;
     filter: drop-shadow(-10px 10px 2px rgba(49, 14, 14, 0.28));
-    z-index: auto;   /* ¿ Debe ser 1 o auto?  */
+    z-index: auto; 
 }
 
 
