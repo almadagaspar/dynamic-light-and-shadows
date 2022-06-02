@@ -1,9 +1,3 @@
-// // Obtengo el centro del elemento que remplazará el icono del cursor del mouse por una Luz. 
-// const light = document.getElementById("light");
-// const lightInfo = light.getBoundingClientRect();
-// const lightX = (lightInfo.width / 2 );
-// const lightY = (lightInfo.height / 2 );
-
 
 // Detecto si el navegador usado es Firefox, para asignarle posteriormente un blur estático al borde de la sombra, por no funcionar bien un blur dinámico en tal navegador.
 const userAgent = navigator.userAgent;
@@ -35,14 +29,13 @@ function updateShadowControl(milliseconds, event) {
 
 
 function updateShadow (event) {
-    const shadMovement = 0.06;      // Cantidad de movimiento que tendrá la sombra al moverse el mouse.
+    const shadMovement = 0.055;      // Cantidad de movimiento que tendrá la sombra al moverse el mouse.
     const shadBlur = 0.004;         // Cantidad de blur que tendá la sombra de un elemento al alejarse el cursor del mouse de él.
     const shadBlurFirefox = 2;      // Cantidad de blur estático en el borde de las sombras, cuando el navegador sea Firefox, por no funcionar bien un blur dinámico en tal navegador.
     const shadOpacMax = 0.45;   // Opacidad MÁXIMA de la sombra (cuando el cursor esta muy cerca del elemento que proyecta la sombra).
     const shadOpacMin = 2.5;   // Opacidad MÍNIMA de la sombra (cuando el cursor esta muy lejos del elemento que proyecta la sombra).
     const ilumMax = 1.15;       // Iluminación MÁXIMA que tendrá un elemento al acercarse el cursor a él. Ej:   0.5 --> 50%    1 --> 100%    
     const ilumMin = 0.8;       // Iluminación MÍNIMA que tendrá un elemento al alejarse el cursor de él.
-    const viewportCenter = (window.innerWidth/2);     // Centro horizontal actual del viewport.
 
     // Si se entro a esta función por haberse movido el mouse, actualizo la posición del cursor.
     if (event) {   
@@ -50,11 +43,6 @@ function updateShadow (event) {
         mouseY = event.clientY
     }
 
-    // // Mantengo el icono de luz, en el lugar del cursor.
-    // light.setAttribute("style", `left: ${(mouseX - lightX)}px;
-    //                              top: ${(mouseY - lightY + 16)}px;`  // Agrego un valor de desfasaje para que el cursor pueda seleccionar el texto debajo de la luz.
-    // )  
-  
     // Actualizo las propiedades de sombra e iluminación para cada elemento segun la última posición del cursor del mouse.
     for (let i = 0; i < allShadElem.length; i++) {
 
@@ -80,12 +68,6 @@ function updateShadow (event) {
                                                     ${browserName !== "firefox" ? (cursDist * shadBlur) : shadBlurFirefox}px
                                                     hsla(180, 100%, 0%, ${ opacityValue }))
                                         brightness(${ brightnessValue })`   
-                                                                                                
-
-        // Modifico el z-index de cada elemento cuando el cursor cambia de lado para evitar que las sombras se proyecten sobre elementos cercanos.
-        if ((mouseX >= viewportCenter && allShadElem[i].style.zIndex !== `${allShadElem.length - i}`) || 
-            (mouseX < viewportCenter && allShadElem[i].style.zIndex !== "auto")){
-            allShadElem[i].style.zIndex = `${mouseX >= viewportCenter ? allShadElem.length - i : "auto"}`
-        }
+                                                                                             
     }
 }
